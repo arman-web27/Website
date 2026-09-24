@@ -30,20 +30,21 @@ function AnimatedValue({ value, prefix = '', suffix = '', decimals = 0 }) {
 export default function GrowthHero({ slide = 0 }) {
   const reduced = useReducedMotion()
   return (
-    <section aria-labelledby="hero-title" className="growth-hero">
+    <section aria-labelledby="hero-title" className={'growth-hero' + (slide === 2 ? ' growth-hero--conversion' : '')}>
       <div className="growth-hero__layout">
         <Motion.div className="growth-hero__copy" initial={reduced ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }}>
           {slide === 1 ? <h1 id="hero-title" className="growth-hero__title">Get Your Business to<br />The <em className="growth-hero__underline">Top of Google<svg viewBox="0 0 260 18" aria-hidden="true"><path d="M4 13Q110-5 253 11Q133 3 5 17" fill="#d6ac54" /></svg></em></h1> : <>
           {slide === 2 ? <h1 id="hero-title" className="growth-hero__title">Turn Clicks<br />Into <em>Customers</em></h1> : <h1 id="hero-title" className="growth-hero__title">Get a <em>22%</em> Higher<br />ROI for Your<br /><span className="growth-hero__underline">Ad Dollars<svg viewBox="0 0 260 18" aria-hidden="true"><path d="M4 13Q110-5 253 11Q133 3 5 17" fill="#d6ac54" /></svg></span></h1>}
           </>}
           {slide === 2 ? <div className="growth-hero__description conversion-description"><p><MarketingIcon type="ads" />Get more Leads, Clicks, Sales and Signups From Facebook Ads</p><p><MarketingIcon type="search" />Get Your Business to The Top of Google</p></div> : <p className="growth-hero__description">Data-driven marketing that turns ad spend into real revenue.<br />Paid ads. SEO. Strategy. Results.</p>}
-          <div className="growth-hero__actions">
-            <Link to="/contact-us" className="growth-hero__button">Let’s grow your business <span aria-hidden="true">→</span></Link>
-            <a href="#home-results" className="growth-hero__results">See the results <span aria-hidden="true">↓</span></a>
-          </div>
+          {slide !== 2 && <div className="growth-hero__actions">
+            <Link to="/contact-us" className="growth-hero__button">Let’s grow your business</Link>
+            <a href="#home-results" className="growth-hero__results">See the results</a>
+          </div>}
           {slide === 2 ? <div className="conversion-stats">{[[500, '', '+', 'Businesses Scaled'], [3.2, '', 'M+', 'Leads Generated'], [98, '', '%', 'Client Satisfaction']].map(([value, prefix, suffix, label]) => <div key={label}><strong><AnimatedValue value={value} prefix={prefix} suffix={suffix} decimals={value % 1 ? 1 : 0} /></strong><span>{label}</span></div>)}</div> : <ul className="growth-hero__benefits">
             {benefits.map(([path, top, bottom]) => <li key={top}><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d={path} /></svg><span>{top}<br />{bottom}</span></li>)}
           </ul>}
+          {slide === 0 && <div className="growth-hero__partners"><span className="growth-hero__partners-label">TRUSTED ADVERTISING PARTNERS</span><div><strong><img className="meta-icon" src="/meta.svg" alt="" width="42" height="28" />Meta Ads</strong><i /><strong><img className="google-icon" src="/google.svg" alt="" width="30" height="30" />Google Partner</strong></div></div>}
         </Motion.div>
         <Motion.div className="growth-hero__visual" initial={reduced ? false : { opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: .55 }}>
           {slide === 1 ? <SearchDashboard /> : slide === 2 ? <ConversionDashboard reduced={reduced} /> : <PerformanceDashboard reduced={reduced} />}
@@ -56,7 +57,7 @@ export default function GrowthHero({ slide = 0 }) {
 function PerformanceDashboard({ reduced }) {
   const bars = [28, 38, 34, 52, 46, 63, 58, 76, 70, 88]
   return <div className="performance-dashboard" aria-label="Illustrative campaign performance dashboard">
-    <div className="performance-dashboard__head"><span><i /> Live campaign performance</span><b>Last 30 days⌄</b></div>
+    <div className="performance-dashboard__head"><span><i /> Live campaign performance</span><b>Last 30 days</b></div>
     <div className="performance-dashboard__metrics">{[[12480, '$', 'Ad Spend', '↑ 12%'], [42360, '$', 'Revenue', '↑ 32%'], [22, '', 'ROI Increase', '↑ 22%']].map(([value, prefix, label, change]) => <div key={label}><strong><AnimatedValue value={value} prefix={prefix} suffix={label === 'ROI Increase' ? '%' : ''} /></strong><span>{label}</span><em>{change}</em></div>)}<div className="performance-dashboard__tag"><small>Turn clicks into</small><strong>Customers</strong><i /></div></div>
     <div className="performance-dashboard__chart"><div className="performance-dashboard__bars">{bars.map((height, index) => <Motion.i key={index} initial={reduced ? false : { height: 0 }} animate={{ height: `${height}%` }} transition={{ duration: 2.2, delay: index * .08 }} />)}</div><svg viewBox="0 0 600 180" preserveAspectRatio="none" aria-hidden="true"><Motion.path initial={reduced ? false : { pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2.2, ease: 'easeInOut' }} d="M0 160 C70 142 100 105 160 120 S225 78 280 92 S350 40 405 63 S490 20 600 5" fill="none" stroke="#f6d77c" strokeWidth="4" /></svg><span>+22% ROI</span></div>
     <div className="performance-dashboard__cards">{[[1248, '', 'New Leads'], [6.8, '', 'Conversion Rate'], [34, '$', 'Cost per Lead']].map(([value, prefix, label]) => <div key={label}><b><AnimatedValue value={value} prefix={prefix} suffix={label === 'Conversion Rate' ? '%' : ''} decimals={value % 1 ? 1 : 0} /></b><span>{label}</span><em>↑ 28%</em></div>)}</div>

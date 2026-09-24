@@ -1,49 +1,8 @@
-import { useEffect, useState } from 'react'
-import { AnimatePresence, motion as Motion, useReducedMotion } from 'framer-motion'
+import { motion as Motion, useReducedMotion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import GrowthHero from './GrowthHero'
+import TeamShowcase from './TeamShowcase'
 
-const campaigns = [
-  {
-    title: 'Get a 22% Higher ROI for Your Ad Dollars',
-    label: '01 / Digital growth, delivered',
-    image: '/newhero1.png',
-    accent: 'sky',
-  },
-  {
-    title: 'Get Your Business to The Top of Google',
-    label: '02 / Search growth',
-    image: '/hero2.webp',
-    accent: 'violet',
-  },
-  {
-    title: 'Get a 22% Higher ROI for Your Ad Dollars',
-    label: '03 / Better returns',
-    image: '/hero.webp',
-    accent: 'emerald',
-  },
-]
-
-const campaignStyles = [
-  {
-    orb: 'bg-amber-300/20',
-    glow: 'shadow-[0_0_100px_rgba(245,158,11,0.18)]',
-    number: 'text-amber-200',
-    active: 'border-amber-300/70 bg-amber-300/10',
-  },
-  {
-    orb: 'bg-violet-400/20',
-    glow: 'shadow-[0_0_100px_rgba(167,139,250,0.14)]',
-    number: 'text-violet-200',
-    active: 'border-violet-300/70 bg-violet-300/10',
-  },
-  {
-    orb: 'bg-emerald-400/20',
-    glow: 'shadow-[0_0_100px_rgba(52,211,153,0.14)]',
-    number: 'text-emerald-200',
-    active: 'border-emerald-300/70 bg-emerald-300/10',
-  },
-]
 
 const services = [
   ['Content Marketing', 'content-marketing', 'content', 'Build authority with content that informs, engages, and converts.'],
@@ -79,8 +38,7 @@ const reviews = [
 ]
 
 const container = 'mx-auto w-full max-w-7xl px-5 sm:px-8'
-const heading = 'text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:text-5xl'
-const eyebrow = 'mb-4 text-xs font-bold uppercase tracking-[0.22em]'
+const heading = 'section-heading'
 const button = 'inline-flex min-h-12 items-center justify-center gap-3 rounded-full border border-neutral-300 bg-[#141411] px-7 py-3 text-sm font-bold text-white transition-colors hover:bg-neutral-200 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-neutral-500'
 
 function Icon({ name, className = 'h-6 w-6' }) {
@@ -136,34 +94,20 @@ function Reveal({ children, className = '', delay = 0 }) {
 }
 
 function Home() {
-  const [campaign, setCampaign] = useState(0)
   const reducedMotion = useReducedMotion()
-  const activeCampaign = campaigns[campaign]
-  const activeStyle = campaignStyles[campaign]
 
-  useEffect(() => {
-    if (reducedMotion) return undefined
-
-    const timer = window.setInterval(() => {
-      setCampaign((current) => (current + 1) % campaigns.length)
-    }, 5200)
-
-    return () => window.clearInterval(timer)
-  }, [reducedMotion])
 
   return (
     <main id="home" className="home-dark overflow-x-clip bg-[#060605] text-white">
       {/* 01 — Campaign hero */}
-      <GrowthHero key={campaign} slide={campaign} />
+      <GrowthHero />
 
       {/* 02 — Why choose us */}
-      <section aria-labelledby="why-title" className="relative overflow-hidden bg-[#060605] py-20 lg:py-28">
+      <section aria-labelledby="why-title" className="relative overflow-hidden bg-[#060605] py-14 lg:py-20">
         <div aria-hidden="true" className="pointer-events-none absolute -right-40 top-10 h-96 w-96 rounded-full bg-amber-300/5 blur-3xl" />
         <div className={container + ' relative'}>
           <div className="grid items-center gap-14 lg:grid-cols-2">
           <Reveal>
-            <p className={eyebrow + ' text-[#e0bd68]'}>Why Choose Us?</p>
-            <div className="mb-7 h-1 w-16 rounded-full bg-gradient-to-r from-[#e6bf64] to-[#b98020]" />
             <h2 id="why-title" className={heading}>AdyGuru Advertising Agency That Generates <span className="bg-gradient-to-b from-[#e9c76f] to-[#d5ac52] bg-clip-text text-transparent">More Leads</span> For You</h2>
             <p className="mt-6 text-lg leading-8 text-neutral-300">We're a Highly Trusted Facebook Ad Agency That Helps Grow Businesses And Increase Profits Across The Globe!</p>
             <Link to="/about-us" className="group mt-8 inline-flex items-center gap-3 rounded-full border border-[#d4af57] bg-[#0A0A0A] px-7 py-4 font-semibold text-white shadow-[0_8px_24px_rgba(142,102,32,.2)] transition-all duration-300 hover:-translate-y-1 hover:bg-neutral-800 hover:shadow-xl">Get to know AdyGuru <Icon name="arrow" className="h-5 w-5 transition-transform duration-300 group-hover:translate-x-1" /></Link>
@@ -219,7 +163,7 @@ function Home() {
       </section>
 
       {/* 03 — Award */}
-      <section aria-labelledby="award-title" className="relative overflow-hidden border-y border-[#d4af5726] bg-black py-20 text-white lg:py-28">
+      <section aria-labelledby="award-title" className="relative overflow-hidden border-y border-[#d4af5726] bg-black py-14 text-white lg:py-20">
         <div aria-hidden="true" className="pointer-events-none absolute left-1/4 top-0 h-[32rem] w-[32rem] rounded-full bg-amber-300/10 blur-3xl" />
         <div className={container + ' relative grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-20'}>
           <Reveal className="relative mx-auto w-full max-w-md px-3 pb-5 sm:px-0">
@@ -231,8 +175,7 @@ function Home() {
             </Motion.div>
           </Reveal>
           <Reveal>
-            <p className={eyebrow + ' flex items-center gap-3 text-[#e7cb85]'}><span className="h-px w-8 shrink-0 bg-[#cba65b]" />Awarded By / Hindustan Insider</p>
-            <h2 id="award-title" className={heading + ' mt-5 max-w-3xl text-white'}>AdyGuru Honored as a <span className="bg-gradient-to-b from-[#fff0bb] via-[#e7c675] to-[#d5ac52] bg-clip-text text-transparent">Top 15 Marketing Agency!</span></h2>
+            <h2 id="award-title" className={heading + ' max-w-3xl text-white'}>AdyGuru Honored as a <span className="bg-gradient-to-b from-[#fff0bb] via-[#e7c675] to-[#d5ac52] bg-clip-text text-transparent">Top 15 Marketing Agency!</span></h2>
             <p className="mt-5 max-w-2xl text-base leading-7 text-neutral-400 sm:text-lg sm:leading-8">A proud moment for AdyGuru. We have been recognized among the Top 15 Marketing Agencies by Hindustan Insider—a testament to our expertise, innovation, and commitment to delivering high-performance marketing solutions.</p>
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
               {[
@@ -252,10 +195,9 @@ function Home() {
       </section>
 
       {/* 04 — Video results */}
-      <section id="home-results" aria-labelledby="results-title" className="relative overflow-hidden bg-[#060605] py-20 text-white lg:py-28">
+      <section id="home-results" aria-labelledby="results-title" className="relative overflow-hidden bg-[#060605] py-14 text-white lg:py-20">
         <div className={container}>
           <Reveal className="max-w-3xl">
-            <p className={eyebrow + ' flex items-center gap-4 text-[#e0bd68]'}>Real businesses. Real growth. <span className="h-0.5 w-11 bg-[#c18b2c]" /></p>
             <h2 id="results-title" className={heading}>Generate <span className="bg-gradient-to-b from-[#f0d486] via-[#e0bd68] to-[#d5ac52] bg-clip-text text-transparent">1000&apos;s</span> Leads Using Paid Marketing</h2>
             <p className="mt-5 text-lg leading-8 text-neutral-300">Witness our client’s success: hundreds of leads and millions in revenue generated!</p>
           </Reveal>
@@ -277,11 +219,10 @@ function Home() {
       </section>
 
       {/* 05 — Services */}
-      <section id="home-services" aria-labelledby="services-title" className="bg-[#0A0A0A] py-20 text-white lg:py-28">
+      <section id="home-services" aria-labelledby="services-title" className="bg-[#0A0A0A] py-14 text-white lg:py-20">
         <div className={container}>
           <Reveal className="grid items-end gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="max-w-2xl">
-              <p className={eyebrow + ' flex items-center gap-4 text-[#A3A3A3]'}><span className="h-px w-14 bg-neutral-500" />Our Services</p>
               <h2 id="services-title" className={heading}>Increase Your Sales By <span className="bg-gradient-to-b from-[#fff0bb] via-[#e4c16c] to-[#d5ac52] bg-clip-text text-transparent">200%</span> With Us</h2>
               <p className="mt-5 max-w-xl text-lg leading-8 text-neutral-300">Our services are designed to generate qualified leads, improve visibility, and support measurable business growth.</p>
             </div>
@@ -314,10 +255,10 @@ function Home() {
       </section>
 
       {/* 06 — Numbers */}
-      <section aria-labelledby="numbers-title" className="relative overflow-hidden bg-[#060605] py-20 lg:py-28">
+      <section aria-labelledby="numbers-title" className="relative overflow-hidden bg-[#060605] py-14 lg:py-20">
         <div className={container}>
           <Reveal className="grid gap-6 lg:grid-cols-2 lg:items-end">
-            <div><p className={eyebrow + ' flex items-center gap-4 text-[#e0bd68]'}><span className="h-0.5 w-12 bg-[#c18b2c]" />Real Numbers</p><h2 id="numbers-title" className={heading}>Expect <span className="bg-gradient-to-b from-[#f0d486] via-[#e0bd68] to-[#d5ac52] bg-clip-text text-transparent">Great Things</span> from Your SEO Agency</h2></div>
+            <div><h2 id="numbers-title" className={heading}>Expect <span className="bg-gradient-to-b from-[#f0d486] via-[#e0bd68] to-[#d5ac52] bg-clip-text text-transparent">Great Things</span> from Your SEO Agency</h2></div>
             <p className="max-w-lg text-lg leading-8 text-neutral-300 lg:justify-self-end">We know how important customer experience is for a business and therefore, we strive to make your company excel in this.</p>
           </Reveal>
           <dl className="mt-12 grid grid-cols-2 gap-5 lg:grid-cols-4">
@@ -334,40 +275,26 @@ function Home() {
       </section>
 
       {/* 07 — Team */}
-      <section aria-labelledby="team-title" className="relative isolate overflow-hidden border-y border-[#d4af57]/20 bg-[#141411] py-20 lg:py-28">
+      <section aria-labelledby="team-title" className="relative isolate overflow-hidden border-y border-[#d4af57]/20 bg-[#141411] py-14 lg:py-20">
         <div className="pointer-events-none absolute -left-24 top-24 h-48 w-48 rounded-full border border-[#d4af57]/15" aria-hidden="true" />
         <div className="pointer-events-none absolute -right-24 bottom-16 h-64 w-64 rounded-full bg-[#d4af57]/10 blur-2xl" aria-hidden="true" />
         <div className={container}>
           <Reveal className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <p className={eyebrow + ' flex items-center gap-3 text-[#e0bd68]'}>People behind the progress <span className="h-1 w-10 rounded-full bg-gradient-to-r from-[#f0d486] to-[#d5ac52]" /></p>
               <h2 id="team-title" className={heading + ' max-w-3xl'}>Meet Our <span className="bg-gradient-to-b from-[#f0d486] via-[#e0bd68] to-[#d5ac52] bg-clip-text text-transparent">Professional Team</span></h2>
             </div>
-            <Link to="/our-team" className="group inline-flex items-center gap-3 border-b border-[#c18b2c] pb-2 font-semibold text-white transition-colors hover:text-[#a96f1b]">Meet everyone <Icon name="arrow" className="transition-transform group-hover:translate-x-1" /></Link>
           </Reveal>
-          <div className="relative mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {team.map(([name, role, file], index) => (
-              <Reveal key={name} delay={(index % 3) * 0.06} className={'group overflow-hidden rounded-2xl border border-[#d4af57]/20 bg-[#141411] shadow-[0_14px_35px_rgba(172,124,36,.1)] transition duration-300 hover:-translate-y-2 hover:border-[#c18b2c] hover:shadow-[0_22px_45px_rgba(172,124,36,.2)] ' + (index === 1 ? 'lg:-translate-y-2 lg:hover:ring-2 lg:hover:ring-[#e0bd68]/60' : '')}>
-                <div className="relative aspect-[1.55] overflow-hidden bg-[#1c1b16] px-1 pt-2">
-                  <img src={'/team' + file + '.webp'} alt={name + ', ' + role} loading="lazy" className="relative h-full w-full scale-[1.2] object-contain object-bottom transition duration-500 group-hover:scale-[1.24]" />
-                </div>
-                <div className="min-h-[5.75rem] border-t border-[#d4af57]/20 bg-gradient-to-br from-[#171713] via-[#141411] to-[#201c12] px-5 py-4 sm:px-6">
-                  <h3 className="text-lg font-bold tracking-tight text-white sm:text-xl">{name}</h3><p className="mt-1 text-xs font-semibold text-[#e0bd68] sm:text-sm">{role}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <TeamShowcase members={team} />
           <p className="mt-10 text-center text-xl font-semibold text-[#e0bd68]">Work with a Dedicated SEO Company</p>
         </div>
       </section>
 
       {/* 08 — Testimonials */}
-      <section aria-labelledby="reviews-title" className="relative overflow-hidden border-y border-[#d4af57]/20 bg-[#141411] py-20 lg:py-28">
+      <section aria-labelledby="reviews-title" className="relative overflow-hidden border-y border-[#d4af57]/20 bg-[#141411] py-14 lg:py-20">
         <div aria-hidden="true" className="pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-[#d4af57]/10 blur-3xl" />
         <div aria-hidden="true" className="pointer-events-none absolute -right-20 bottom-8 h-56 w-56 rounded-full border border-[#d4af57]/15" />
         <div className={container}>
           <Reveal className="mx-auto max-w-3xl text-center">
-            <p className={eyebrow + ' flex items-center justify-center gap-4 text-[#e0bd68]'}>Good words. Lasting relationships. <span className="h-1 w-11 rounded-full bg-gradient-to-r from-[#f0d486] to-[#d5ac52]" /></p>
             <h2 id="reviews-title" className={heading}>1,000&apos;s of Happy Customers Love Us And <span className="bg-gradient-to-b from-[#f0d486] via-[#e0bd68] to-[#d5ac52] bg-clip-text text-transparent">Now You Can Too</span></h2>
             <p className="mt-6 text-lg leading-8 text-neutral-300">We know how important customer experience is for a business and therefore, we strive to make your company excel in this.</p>
           </Reveal>
@@ -383,22 +310,20 @@ function Home() {
               </Reveal>
             ))}
           </div>
-          <div className="mt-9 text-center"><Link to="/testimonial" className="group inline-flex items-center gap-3 font-semibold text-white transition-colors hover:text-[#e0bd68]">More client stories <Icon name="arrow" className="transition-transform group-hover:translate-x-1" /></Link></div>
         </div>
       </section>
 
       {/* 09 — Join us */}
-      <section aria-labelledby="join-title" className="relative overflow-hidden bg-[#070707] py-20 text-white lg:py-28">
+      {/* <section aria-labelledby="join-title" className="relative overflow-hidden bg-[#070707] py-14 text-white lg:py-20">
         <Reveal className={container + ' relative overflow-hidden rounded-[2rem] border border-[#c18b2c]/60 bg-[radial-gradient(circle_at_85%_0%,rgba(193,139,44,.16),transparent_32%),linear-gradient(135deg,#11100d,#030303)] px-7 py-14 shadow-[0_0_80px_rgba(193,139,44,.12)] sm:px-12 sm:py-20 lg:px-20 lg:py-24'}>
           <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-32 h-[34rem] w-[34rem] rounded-full border border-[#e0bd68]/35 bg-[#e0bd68]/[.03] shadow-[0_0_80px_rgba(224,189,104,.18)]" />
           <div aria-hidden="true" className="pointer-events-none absolute -right-8 -top-20 h-72 w-72 rounded-full border-[28px] border-[#e0bd68]/10" />
           <div className="relative max-w-5xl">
-            <p className={eyebrow + ' text-[#e0bd68]'}>More With Us</p>
             <h2 id="join-title" className={heading + ' max-w-5xl text-4xl sm:text-5xl lg:text-7xl'}>You Want to Showcase Your Business in <span className="bg-gradient-to-r from-[#f0d486] via-[#e0bd68] to-[#d5ac52] bg-clip-text text-transparent">Top?</span> Join With Us</h2>
             <Link to="/contact-us" className="group mt-10 inline-flex min-h-14 items-center gap-5 rounded-full bg-gradient-to-r from-[#f0d486] via-[#e0bd68] to-[#b77d20] px-8 py-4 text-base font-bold text-[#17120a] shadow-[0_0_32px_rgba(224,189,104,.3)] transition hover:-translate-y-1 hover:shadow-[0_0_42px_rgba(224,189,104,.48)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#e0bd68]">Join Us <Icon name="arrow" className="h-5 w-5 transition-transform group-hover:translate-x-1" /></Link>
           </div>
         </Reveal>
-      </section>
+      </section> */}
     </main>
   )
 }
