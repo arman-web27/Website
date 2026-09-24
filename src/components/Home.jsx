@@ -262,7 +262,7 @@ function Home() {
             <p className="max-w-lg text-lg leading-8 text-neutral-300 lg:justify-self-end">We know how important customer experience is for a business and therefore, we strive to make your company excel in this.</p>
           </Reveal>
           <dl className="mt-12 grid grid-cols-2 gap-5 lg:grid-cols-4">
-            {[['330+', 'Active Clients', 'users', '+12%', 82], ['85+', 'Team Advisors', 'users', '+18%', 68], ['850+', 'Projects Done', 'content', '+24%', 92], ['15+', 'Glorious Years', 'trophy', '+10%', 58]].map(([value, label, icon, growth, progress], index) => (
+            {[['330+', 'Active Clients', 'users', '+12%', 82], ['85+', 'Team Advisors', 'users', '+18%', 68], ['850+', 'Projects Done', 'content', '+24%', 92], ['10+', 'Glorious Years', 'trophy', '+10%', 58]].map(([value, label, icon, growth, progress], index) => (
               <Reveal key={label} delay={index * 0.08} className="group relative overflow-hidden rounded-2xl border border-[#d4af57]/20 bg-[#141411] p-6 shadow-[0_12px_35px_rgba(172,124,36,.08)] transition-all duration-300 hover:-translate-y-2 hover:border-[#c18b2c] hover:shadow-[0_20px_45px_rgba(172,124,36,.18)] sm:p-7">
                 <div className="relative flex items-start justify-between gap-3"><span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[#dcb65e]/50 bg-[#fff5d7] text-[#8c5e14] transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"><Icon name={icon} className="h-6 w-6" /></span><span className="rounded-full border border-[#e5c878] bg-[#fff8e5] px-3 py-1 text-xs font-bold text-[#9b6a19]">↑ {growth}</span></div>
                 <dd className="mt-7 text-4xl font-black tracking-tight text-white sm:text-5xl">{value}</dd>
