@@ -11,7 +11,7 @@ function SocialIcon({ label }) {
   if (label === 'LinkedIn') return <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M5.4 3a2.1 2.1 0 1 0 0 4.2 2.1 2.1 0 0 0 0-4.2ZM3.6 9H7v12H3.6V9Zm5.6 0h3.3v1.6c.6-1.1 1.7-1.9 3.5-1.9 3.5 0 4.1 2.3 4.1 5.3v7h-3.5v-6.2c0-1.5 0-3.3-2-3.3s-2.1 1.6-2.1 3.2V21H9.2V9Z" /></svg>
   if (label === 'YouTube') return <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4" fill="currentColor" /><path d="m10 8.5 6 3.5-6 3.5v-7Z" fill="#11100f" /></svg>
   const paths = { LinkedIn: 'M6 9v9M6 6v.01M10 18v-5a3 3 0 0 1 6 0v5M10 9v9', Instagram: 'M7 3h10a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7a4 4 0 0 1 4-4Z M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm5.5-.5h.01', YouTube: 'm10 8 6 4-6 4V8Zm11 4c0 4-1 5-5 5H8c-4 0-5-1-5-5s1-5 5-5h8c4 0 5 1 5 5Z', X: 'm5 4 14 16M19 4 5 20' }
-  if (label === 'X') return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M5 4 19 20M19 4 5 20" /></svg>
+  if (label === 'X') return <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24h-6.657l-5.214-6.817-5.965 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
   return <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5" aria-hidden="true"><path d={paths[label]} /></svg>
 }
 
@@ -40,7 +40,7 @@ function Footer() {
         Copyright © 2026 AdyGuru Private Limited <span>|</span> Privacy Policy <span>|</span> Terms and Conditions
       </div>
       <style>{`
-.compact-footer { --footer-border:1px solid #d4af5740; background:#11100f; color:#fff; overflow:hidden; font-family:Inter,Arial,sans-serif; }
+.compact-footer { --footer-border:1px solid #aca08540; background:#11100f; color:#fff; overflow:hidden; font-family:Inter,Arial,sans-serif; }
 .compact-footer__upper { position:relative; text-align:center; padding:34px 5vw 42px; background:radial-gradient(circle at 50% 30%,#2a2418 0%,#171513 28%,#11100f 64%); }
 .compact-footer__heading { display:flex; align-items:center; justify-content:center; gap:18px; }
 .compact-footer__heading>a { flex-shrink:0; }
@@ -54,7 +54,7 @@ function Footer() {
 .compact-footer__cta svg { width:24px; height:24px; flex-shrink:0; transition:transform .2s; }
 .compact-footer__cta:hover svg { transform:translateX(4px); }
 .compact-footer__links { display:flex; align-items:center; justify-content:center; gap:28px; margin:42px auto 0; position:relative; z-index:1; }
-.compact-footer nav { display:flex; align-items:center; gap:0; padding:0 24px; border:var(--footer-border); border-radius:999px; box-shadow:none; }
+.compact-footer nav { display:flex; align-items:center; gap:0; padding:10px 24px; border:var(--footer-border); border-radius:999px; box-shadow:none; }
 .compact-footer nav a { text-transform:uppercase; font-size:clamp(13px,1.25vw,18px); white-space:nowrap; }
 .compact-footer nav a + a { border-left:var(--footer-border); margin-left:clamp(16px,2.3vw,34px); padding-left:clamp(16px,2.3vw,34px); }
 .compact-footer__socials { display:flex; align-items:center; gap:18px; border-left:var(--footer-border); padding-left:30px; }
