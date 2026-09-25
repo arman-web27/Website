@@ -143,7 +143,7 @@ main > section.about-cta-wrap { padding-top: 0; }
   .growth-hero__layout { padding-inline: 32px; }
 }
 @media (min-width: 1024px) {
-  .growth-hero, .campaign-hero { padding-block: 64px; }
+  .growth-hero, .campaign-hero { padding-block: 40px; }
   .growth-hero__layout, .campaign-hero__layout {
     grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
     grid-template-rows: 560px;
@@ -664,7 +664,8 @@ html {
 }
 @media (max-width:480px) { .reference-nav { inset:8px 8px auto; } .reference-nav__bar { padding:7px 8px 7px 12px; border-radius:20px; min-height:60px; } .reference-nav__brand { font-size:22px; gap:6px; } .reference-nav__mark { width:28px; height:28px; } .reference-nav__contact { padding:0 15px; gap:10px; min-height:42px; font-size:12px; } .reference-nav__contact svg { width:16px; height:16px; } .reference-nav__spacer { height:78px; } }
 @media (prefers-reduced-motion:reduce) { .reference-nav *, .reference-nav *::after { transition:none !important; } }
-.back-to-top-float { position:fixed; left:clamp(18px,3vw,42px); bottom:clamp(18px,3vw,38px); z-index:60; display:grid; width:58px; height:58px; place-items:center; border:3px solid #fff; border-radius:50%; background:#e0bd68; color:#111; box-shadow:0 8px 24px #0004; cursor:pointer; transition:transform .25s ease,box-shadow .25s ease; }
+.back-to-top-float { position:fixed; left:clamp(18px,3vw,42px); bottom:clamp(18px,3vw,38px); z-index:60; display:grid; width:58px; height:58px; place-items:center; border:3px solid #fff; border-radius:50%; background:#e0bd68; color:#111; box-shadow:0 8px 24px #0004; cursor:pointer; opacity:0; visibility:hidden; pointer-events:none; transform:translateY(12px); transition:opacity .25s ease,visibility .25s ease,transform .25s ease,box-shadow .25s ease; }
+.back-to-top-float.is-visible { opacity:1; visibility:visible; pointer-events:auto; transform:translateY(0); }
 .back-to-top-float svg { width:28px; height:28px; }
 .back-to-top-float:hover { transform:translateY(-5px) scale(1.08); box-shadow:0 14px 28px #0005,0 0 0 8px #e0bd6826; }
 .back-to-top-float:focus-visible { outline:3px solid #e0bd68; outline-offset:4px; }

@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import './App.css'
 import HomePage from './pages/HomePage'
@@ -17,12 +17,22 @@ function ScrollToTop() {
 }
 
 function App() {
+  const [showBackToTop, setShowBackToTop] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => setShowBackToTop(window.scrollY > 240)
+
+    handleScroll()
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   return (
     <>
       <ScrollToTop />
       <button
         type="button"
-        className="back-to-top-float"
+        className={`back-to-top-float${showBackToTop ? ' is-visible' : ''}`}
         aria-label="Back to top"
         title="Back to top"
         onClick={() => window.scrollTo({
